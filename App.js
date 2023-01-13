@@ -1,41 +1,56 @@
-import React from "react";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-
-import All from "./screen"
+import React from 'react';
+// -----------------------ライブラリ-------------------------------
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
+// -----------------------ページ-------------------------------
+import All from './screens/All';
+import Business from './screens/Business';
+import HealthScreen from './screens/Health';
+import SportsScreen from './screens/Sports';
+import TechScreen from './screens/Tech';
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="All" component={All} />
-        <Tab.Screen name="Business" component={Business} />
-        <Tab.Screen name="Health" component={HealthScreen} />
-        <Tab.Screen name="Sports" component={SportsScreen} />
-        <Tab.Screen name="Tach" component={TechScreen} />
+        <Tab.Screen name="All" component={All}
+          options={{
+            tabBarIcon: (props) => (
+              <Icon type='feather' name='home' color={props.color} />
+            ),
+          }} />
+
+        <Tab.Screen name="Business" component={Business}
+          options={{
+            tabBarIcon: (props) => (
+              <Icon type='feather' name='dollar-sign' color={props.color} />
+            ),
+          }} />
+
+        <Tab.Screen name="Health" component={HealthScreen}
+          options={{
+            tabBarIcon: (props) => (
+              <Icon type='feather' name='heart' color={props.color} />
+            ),
+          }} />
+
+        <Tab.Screen name="Sports" component={SportsScreen}
+          options={{
+            tabBarIcon: (props) => (
+              <Icon type='ionicon' name="tennisball-outline" color={props.color} />
+            ),
+          }} />
+
+        <Tab.Screen name="Tech" component={TechScreen}
+          options={{
+            tabBarIcon: (props) => (
+              <Icon type='ionicon' name="hardware-chip-outline" color={props.color} />
+            ),
+          }} />
       </Tab.Navigator>
     </NavigationContainer>
-  )
-}
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your a</Text>
-      <StatusBar style="auto" />
-    </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+} 
